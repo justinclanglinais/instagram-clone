@@ -3,7 +3,6 @@ class PostsController < ApplicationController
         @post = Post.new
     end
     def create
-        byebug
         @post = Post.new(post_params)
         if @post.save
             redirect_to :dashboard_path, flash: { success: 'Post was created successfully!'}
@@ -14,9 +13,12 @@ class PostsController < ApplicationController
     def show
 
     end
+    def index
+        @posts = Post.all
+    end
     private
     def post_params
-        params.require(:post).permit(:image, :image_cache)
+        params.require(:post).permit(:image)
     end
 
 
